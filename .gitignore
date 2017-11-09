@@ -1,0 +1,5 @@
+# configuration
+*.pyc
+.idea/
+# ignore Data
+*.csv
