@@ -15,7 +15,9 @@ IMDB course project.
 - Document: <http://tushare.org/index.html>
 - Github: <https://github.com/waditu/tushare>
 
-##第八周计划
+
+
+**第八周计划**
 
 - 完成日K图
 
