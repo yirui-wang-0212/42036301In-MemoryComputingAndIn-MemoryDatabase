@@ -31,13 +31,15 @@ public class DemoApplicationTests {
 //			System.out.println(weather.getMon()+","+weather.getTemperature());
 //		}
 
-		ArrayList<HistoricalQuotesModel> historicalQuotesMapperArrayList = historicalQuotesMapper.getData();
-
-		for (HistoricalQuotesModel historicalQuotesModel : historicalQuotesMapperArrayList){
-			System.out.println(historicalQuotesModel.getCode()
-					+ "," + historicalQuotesModel.getOpen_value()
-					+ "," + historicalQuotesModel.getHigh_value());
-		}
+//		ArrayList<HistoricalQuotesModel> historicalQuotesMapperArrayList = historicalQuotesMapper.getData();
+//
+//		for (HistoricalQuotesModel historicalQuotesModel : historicalQuotesMapperArrayList){
+////			System.out.println(historicalQuotesModel.getCode()
+////					+ "," + historicalQuotesModel.getTrading_day()
+////					+ "," + historicalQuotesModel.getOpen_value()
+////					+ "," + historicalQuotesModel.getHigh_value());
+//			System.out.println(historicalQuotesModel);
+//		}
 
 	}
 
