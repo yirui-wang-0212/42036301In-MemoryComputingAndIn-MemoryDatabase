@@ -31,4 +31,3 @@ IMDB course project.
   | 罗忠金  |   日K图后端    |
   | 杨国辉  |   月K图后端    |
 
-  ​
