@@ -30,11 +30,20 @@ public class HistoricalQuotesController {
 
         System.out.println("hello");
 
-        ArrayList<HistoricalQuotesModel> historicalQuotesMapperArrayList = historicalQuotesMapper.getData(requestBody.get("code").toString());
+        ArrayList<HistoricalQuotesModel> historicalQuotesModelList = historicalQuotesMapper.getData(requestBody.get("code").toString());
 
-        return historicalQuotesMapperArrayList;
+//        ArrayList<ArrayList<Object>> responseLists = new ArrayList<>();
+//
+//        for (HistoricalQuotesModel historicalQuotesModel : historicalQuotesModelList){
+//            ArrayList<Object> objectArrayList = new ArrayList<>();
+////            objectArrayList.add(historicalQuotesModel.getCode());
+//            objectArrayList.add(historicalQuotesModel.getOpen_value());
+//            responseLists.add(objectArrayList);
+//        }
+
+        return historicalQuotesModelList;
 
     }
 
-    
+
 }
