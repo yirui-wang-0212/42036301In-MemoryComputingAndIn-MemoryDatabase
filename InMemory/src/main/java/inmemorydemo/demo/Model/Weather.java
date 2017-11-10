@@ -23,4 +23,5 @@ public class Weather {
     public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
+
 }
