@@ -32,16 +32,24 @@ public class HistoricalQuotesController {
 
         ArrayList<HistoricalQuotesModel> historicalQuotesModelList = historicalQuotesMapper.getData(requestBody.get("code").toString());
 
-//        ArrayList<ArrayList<Object>> responseLists = new ArrayList<>();
-//
-//        for (HistoricalQuotesModel historicalQuotesModel : historicalQuotesModelList){
-//            ArrayList<Object> objectArrayList = new ArrayList<>();
-////            objectArrayList.add(historicalQuotesModel.getCode());
-//            objectArrayList.add(historicalQuotesModel.getOpen_value());
-//            responseLists.add(objectArrayList);
-//        }
+        ArrayList<ArrayList<Object>> responseLists = new ArrayList<>();
 
-        return historicalQuotesModelList;
+        for (HistoricalQuotesModel historicalQuotesModel : historicalQuotesModelList){
+            ArrayList<Object> objectArrayList = new ArrayList<>();
+//            objectArrayList.add(historicalQuotesModel.getCode());
+            objectArrayList.add(historicalQuotesModel.getTrading_day());
+            objectArrayList.add(historicalQuotesModel.getOpen_value());
+            objectArrayList.add(historicalQuotesModel.getClose_value());
+            objectArrayList.add(historicalQuotesModel.getLow_value());
+            objectArrayList.add(historicalQuotesModel.getHigh_value());
+            objectArrayList.add(historicalQuotesModel.getMa5());
+            objectArrayList.add(historicalQuotesModel.getMa10());
+            objectArrayList.add(historicalQuotesModel.getMa20());
+            objectArrayList.add(historicalQuotesModel.getVolume_value());
+            responseLists.add(objectArrayList);
+        }
+
+        return responseLists;
 
     }
 
