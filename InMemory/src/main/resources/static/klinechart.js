@@ -1,6 +1,5 @@
 var upColor = '#00da3c';
 var downColor = '#ec0000';
-var myChart = echarts.init(document.getElementById('main'));
 
 function splitData(rawData) {
     var categoryData = [];
@@ -19,22 +18,13 @@ function splitData(rawData) {
     };
 }
 
-function calculateMA(dayCount, data) {
+function getMA(dataCount, data){
     var result = [];
-    for (var i = 0, len = data.values.length; i < len; i++) {
-        if (i < dayCount) {
-            result.push('-');
-            continue;
-        }
-        var sum = 0;
-        for (var j = 0; j < dayCount; j++) {
-            sum += data.values[i - j][1];
-        }
-        result.push(+(sum / dayCount).toFixed(3));
+    for (var i = 0, len = data.values.length ; i < len; i++) {
+        result.push(data.values[i][dataCount]);
     }
     return result;
 }
-
 
 var stockCodePost = angular.module('stockCodePost', []);
 stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
@@ -43,6 +33,7 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
         url: '/api/history/days',
         data: {"code": "600121"}
     }).then(function successCallback(response) {
+        var myChart = echarts.init(document.getElementById('main'));
         var rawData = response.data;
         console.log(rawData);
         var data = splitData(rawData);
@@ -127,7 +118,7 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
                     type: 'category',
                     data: data.categoryData,
                     scale: true,
-                    boundaryGap: false,
+                    boundaryGap : false,
                     axisLine: {onZero: false},
                     splitLine: {show: false},
                     splitNumber: 20,
@@ -142,7 +133,7 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
                     gridIndex: 1,
                     data: data.categoryData,
                     scale: true,
-                    boundaryGap: false,
+                    boundaryGap : false,
                     axisLine: {onZero: false},
                     axisTick: {show: false},
                     splitLine: {show: false},
@@ -226,7 +217,7 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
                 {
                     name: 'MA5',
                     type: 'line',
-                    data: calculateMA(5, data),
+                    data: getMA(4, data),
                     smooth: true,
                     lineStyle: {
                         normal: {opacity: 0.5}
@@ -235,7 +226,7 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
                 {
                     name: 'MA10',
                     type: 'line',
-                    data: calculateMA(10, data),
+                    data: getMA(5, data),
                     smooth: true,
                     lineStyle: {
                         normal: {opacity: 0.5}
@@ -244,7 +235,7 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
                 {
                     name: 'MA20',
                     type: 'line',
-                    data: calculateMA(20, data),
+                    data: getMA(6, data),
                     smooth: true,
                     lineStyle: {
                         normal: {opacity: 0.5}
@@ -269,30 +260,30 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
             ]
         }, true);
 
-// myChart.on('brushSelected', renderBrushed);
+        // myChart.on('brushSelected', renderBrushed);
 
-// function renderBrushed(params) {
-//     var sum = 0;
-//     var min = Infinity;
-//     var max = -Infinity;
-//     var countBySeries = [];
-//     var brushComponent = params.brushComponents[0];
+        // function renderBrushed(params) {
+        //     var sum = 0;
+        //     var min = Infinity;
+        //     var max = -Infinity;
+        //     var countBySeries = [];
+        //     var brushComponent = params.brushComponents[0];
 
-//     var rawIndices = brushComponent.series[0].rawIndices;
-//     for (var i = 0; i < rawIndices.length; i++) {
-//         var val = data.values[rawIndices[i]][1];
-//         sum += val;
-//         min = Math.min(val, min);
-//         max = Math.max(val, max);
-//     }
+        //     var rawIndices = brushComponent.series[0].rawIndices;
+        //     for (var i = 0; i < rawIndices.length; i++) {
+        //         var val = data.values[rawIndices[i]][1];
+        //         sum += val;
+        //         min = Math.min(val, min);
+        //         max = Math.max(val, max);
+        //     }
 
-//     panel.innerHTML = [
-//         '<h3>STATISTICS:</h3>',
-//         'SUM of open: ' + (sum / rawIndices.length).toFixed(4) + '<br>',
-//         'MIN of open: ' + min.toFixed(4) + '<br>',
-//         'MAX of open: ' + max.toFixed(4) + '<br>'
-//     ].join(' ');
-// }
+        //     panel.innerHTML = [
+        //         '<h3>STATISTICS:</h3>',
+        //         'SUM of open: ' + (sum / rawIndices.length).toFixed(4) + '<br>',
+        //         'MIN of open: ' + min.toFixed(4) + '<br>',
+        //         'MAX of open: ' + max.toFixed(4) + '<br>'
+        //     ].join(' ');
+        // }
 
         myChart.dispatchAction({
             type: 'brush',
@@ -304,7 +295,6 @@ stockCodePost.controller('stockCodePostCtrl', function ($scope, $http) {
                 }
             ]
         });
-
 
     }, function errorCallback(response) {
         alert("不存在这支股票。");
