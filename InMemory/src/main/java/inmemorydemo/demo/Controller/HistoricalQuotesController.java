@@ -37,7 +37,7 @@ public class HistoricalQuotesController {
         for (HistoricalQuotesModel historicalQuotesModel : historicalQuotesModelList){
             ArrayList<Object> objectArrayList = new ArrayList<>();
 //            objectArrayList.add(historicalQuotesModel.getCode());
-            objectArrayList.add(historicalQuotesModel.getTrading_day());
+            objectArrayList.add(historicalQuotesModel.getTrading_day().substring(0,10));
             objectArrayList.add(historicalQuotesModel.getOpen_value());
             objectArrayList.add(historicalQuotesModel.getClose_value());
             objectArrayList.add(historicalQuotesModel.getLow_value());

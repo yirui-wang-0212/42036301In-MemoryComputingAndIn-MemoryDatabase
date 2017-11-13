@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public interface HistoricalQuotesMapper {
 
 //    @Select("SELECT CODE, READING_DAY, OPEN_VALUE, HIGH_VALUE FROM HISTORICAL_QUOTES")
-    @Select("select * from historical_quotes where code=${code}")
+    @Select("select * from historical_quotes where code=${code} order by trading_day")
     ArrayList<HistoricalQuotesModel> getData(@Param("code") String code);
 
 }
