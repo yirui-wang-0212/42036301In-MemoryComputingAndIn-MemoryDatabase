@@ -73,5 +73,7 @@ def GetTime():
     s_time = s_time[:nPos]
     return s_time
 
+DealData()
+
 # 这里开始
 # Timer()
