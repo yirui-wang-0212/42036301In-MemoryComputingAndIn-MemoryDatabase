@@ -2,10 +2,12 @@ package sixaps.stock.Model;
 
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+
 @Repository
 public class Stock {
      private String code;
-     private String date;
+     private String trading_day;
      private double open_value;
      private double close_value;
      private double high_value;
@@ -20,8 +22,8 @@ public class Stock {
           return code;
      }
 
-     public String getDate() {
-          return date;
+     public String getTrading_day() {
+          return trading_day;
      }
 
      public double getClose_value() {
