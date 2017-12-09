@@ -28,6 +28,8 @@ public class StockController {
             List<List<Object>> matData = new ArrayList<>();
             List<Object> temp;
             for (Stock i : stockGroup.getStocks()) {
+                if(i.getVolume_value() <=0)
+                    continue;
                 temp = new ArrayList<Object>();
                 temp.add(i.getTrading_day());
                 temp.add(i.getOpen_value());
@@ -57,6 +59,8 @@ public class StockController {
             List<List<Object>> matData = new ArrayList<>();
             List<Object> temp;
             for (Stock i : stockGroup.getStocks()) {
+                if(i.getVolume_value() <=0)
+                    continue;
                 temp = new ArrayList<Object>();
                 temp.add(i.getTrading_day());
                 temp.add(i.getOpen_value());
@@ -86,6 +90,8 @@ public class StockController {
             List<List<Object>> matData = new ArrayList<>();
             List<Object> temp;
             for (Stock i : stockGroup.getStocks()) {
+                if(i.getVolume_value() <=0)
+                    continue;
                 temp = new ArrayList<Object>();
                 temp.add(i.getTrading_day());
                 temp.add(i.getOpen_value());
