@@ -48,7 +48,6 @@ def DealData():
     next(reader,None)
     for line in reader:
         if line[1][0] == '0' or line[1][0] == '6':
-            print line[1]
             sql = 'INSERT INTO DATA_REAL_TIME VALUES(SEQ_DATA_REAL_TIME.NEXTVAL,'
             # code
             sql += "'" + line[1] + "',"
@@ -78,7 +77,7 @@ def GetTime():
     s_time = s_time[:nPos]
     return s_time
 
-# DealData()
+DealData()
 
 # 这里开始
-Timer()
+# Timer()
