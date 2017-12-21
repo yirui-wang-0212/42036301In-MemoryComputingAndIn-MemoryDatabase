@@ -1,5 +1,7 @@
 # configuration
 *.pyc
 .idea/
+target/
+demo.iml
 # ignore Data
 *.csv
