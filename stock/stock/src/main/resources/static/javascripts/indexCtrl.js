@@ -75,10 +75,10 @@ app.controller('indexCtrl', function($scope, $http) {
         $scope.downColor = '#ec0000';
         $scope.searchInput = "";
 
-        $scope.initKline('00', 'timeKMain', 'Days');
-        $scope.initKline('00', 'dayKMain', 'Days');
-        $scope.initKline('00', 'weekKMain', 'Weeks');
-        $scope.initKline('00', 'monthKMain', 'Months');
+        $scope.initKline('603999', 'timeKMain', 'Days');
+        $scope.initKline('603999', 'dayKMain', 'Days');
+        $scope.initKline('603999', 'weekKMain', 'Weeks');
+        $scope.initKline('603999', 'monthKMain', 'Months');
     };
 
     $scope.initKline = function (defaultCode, initId, type, code) {
