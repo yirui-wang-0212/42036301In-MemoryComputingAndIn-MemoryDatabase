@@ -65,8 +65,8 @@ app.controller('indexCtrl', function($scope, $http) {
     $scope.update = function (code) {
         $scope.initKline('', 'timeKMain', 'Days', code);
         $scope.initKline('', 'dayKMain', 'Days', code);
-        $scope.initKline('', 'weekKMain', 'Days', code);
-        $scope.initKline('', 'monthKMain', 'Days', code);
+        $scope.initKline('', 'weekKMain', 'Weeks', code);
+        $scope.initKline('', 'monthKMain', 'Months', code);
     };
 
     $scope.initData = function () {
@@ -77,8 +77,8 @@ app.controller('indexCtrl', function($scope, $http) {
 
         $scope.initKline('00', 'timeKMain', 'Days');
         $scope.initKline('00', 'dayKMain', 'Days');
-        $scope.initKline('00', 'weekKMain', 'Days');
-        $scope.initKline('00', 'monthKMain', 'Days');
+        $scope.initKline('00', 'weekKMain', 'Weeks');
+        $scope.initKline('00', 'monthKMain', 'Months');
     };
 
     $scope.initKline = function (defaultCode, initId, type, code) {
