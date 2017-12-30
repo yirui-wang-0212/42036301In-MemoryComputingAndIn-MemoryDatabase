@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+
+
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style_sign.css">
+    <link rel="script" href="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="style-2">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="menu">
+                <li><a>&nbsp;</a></li>
+                <li><a>&nbsp;</a></li>
+                <li><a>&nbsp;</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" ng-app="myApp" ng-controller="Redirect">
+        <div class="col-md-4">
+
+
+            <!-- Start Sign In Form -->
+            <form id="formDemo" name="formDemo" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
+            <h2>登录</h2>
+            <div class="form-group">
+                <label for="name" class="sr-only">用户名</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="用户名" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="_password" class="sr-only">密码</label>
+                <input type="password" name="password" class="form-control" id="_password" placeholder="密码" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="remember"><input type="checkbox" id="remember">&nbsp;记住我</label>
+            </div>
+            <div class="form-group">
+                <p>未注册？ <a href="sign-up2.html">注册</a> | <a href="forgot2.html">忘记密码?</a></p>
+            </div>
+            <div class="form-group">
+                <input id="subbtn" type="text" value="登录" class="btn btn-primary" ng-click="Func()">
+            </div>
+        </form>
+            <!-- END Sign In Form -->
+
+        </div>
+    </div>
+    <div class="row" style="padding-top: 60px; clear: both;">
+        <div class="col-md-12 text-center"><p><small>&copy; All Rights Reserved.</small></p></div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<!--<script src="js/bootstrap.min.js"></script>--!>
+<!-- Placeholder -->
+<script src="js/jquery.placeholder.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+
+<!-- Main JS -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('Redirect', function ($scope, $http){
+
+        $scope.Func = function () {
+            var username=document.getElementById("name").value;
+            var password=document.getElementById("_password").value;
+            $http({
+                method:'POST',
+                url:'http://localhost:8080/user/login',
+                data:"name=" + username + "&password=" + password,
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (value) {
+                if (value.data === 200)
+                    window.location.href = "index_data2.html";
+                else if(value.data === 400){
+                    alert("用户名或密码错误！");
+                    window.location.href = "login.html";
+                }
+                else
+                    window.location.href = "400.html";
+
+            });
+        }
+    });
+
+</script>
+

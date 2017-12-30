@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ranking</title>
+    <!-- jQuery-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/rankingjs.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_foxer.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Kappe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <!--<link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>-->
+    <!--//fonts-->
+
+</head>
+<body>
+<div class="header">
+    <div class="header-left-ranking">
+        <div class="logo">
+            <a ng-click="check_out()">登出</a>
+        </div>
+        <div class="top-nav">
+            <ul >
+                <li><b class="white"></b></li>
+
+                <li ><a href="index_data2.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
+                <li><a href="fundamentals.html" class="black1"> 基本面数据</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
+                <li>
+
+                </li>
+                <div class="your-top">
+                    <form method="get" id="search_form" onkeypress="form_query()" action="/detail.html">
+                        <div class="cf">
+                            <label class="search-bar">
+                                <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                                <a id="search" class="btn-search">
+                                    <i class="icon-search"></i>
+                                </a>
+                                <a href="javascript:" class="btn-more"></a>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="clear"> </div>
+                </div>
+
+            </ul>
+        </div>
+    </div>
+    <!---->
+    <div class="content" ng-app="myApp" ng-controller="siteCtrl">
+        <div class="work">
+            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龙虎榜</p>
+            <br />
+
+            <style>
+                .test-top{margin-top:2%}
+            </style>
+
+            <div class="test-top" ng-repeat="l1 in rankings">
+
+                <style>
+                    .lhbContentTitle{font-size:medium; margin: 0.5% 1%}
+                </style>
+                <div class="lhbContentTitle">{{l1.reason}}</div>
+            <!--<div class="blog-in">-->
+                <!--<h5>{{l1.reason}}</h5>-->
+                <!--<ul class="date">-->
+                <!--</ul>-->
+            <!--</div>-->
+
+            <table width="100%" border="5%" cellspacing="0" cellpadding="0" >
+                <tr>
+
+                    <td scope="col" style="vertical-align:middle; text-align:center;">股票代码</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">股票名称</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">当日涨跌幅</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;" >龙虎榜成交额 (万)</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">买入额（万）</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">买入占总成交比例</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">卖出额（万）</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">卖出占总成交比例</td>
+                </tr>
+
+                <tr>
+                    <td colspan="7" ></td>
+                </tr>
+                <tr ng-repeat="l2 in l1.data">
+
+                    <td style="vertical-align:middle; text-align:center;">
+                        {{l2.code}}
+                    </td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.name}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.p_change}}</td>
+                    <td style="vertical-align:middle; text-align:center;">
+                        {{l2.amount}}
+                    </td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.buy}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.bratio}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.sell}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.sration}}</td>
+                </tr>
+
+            </table>
+
+                </div></div>
+            <!-- 分页 end --
+        <!-- end main -->
+            <div class="clear"> </div>
+        </div>
+    </div>
+    <div class="clear"> </div>
+</body>
+
+
+
+</html>

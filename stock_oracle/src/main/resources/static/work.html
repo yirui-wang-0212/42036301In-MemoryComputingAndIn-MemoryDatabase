@@ -1,0 +1,144 @@
+
+<html>
+<head>
+    <title>Work</title>
+    <!-- jQuery-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Kappe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <!--<link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>-->
+    <!--//fonts-->
+
+</head>
+<body>
+<div class="header"  ng-app="myApp" ng-controller="siteCtrl">
+    <div class="header-left">
+        <div class="logo">
+            <a ng-click="check_out()">登出</a>
+        </div>
+        <div class="top-nav">
+            <ul >
+                <li><b class="white"></b></li>
+                <li ><a href="index_data2.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
+                <li><a href="fundamentals.html" class="black1"> 基本面数据</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
+            </ul>
+        </div>
+    </div>
+
+    <!---->
+    <div class="content">
+        <div class="work">
+            <div class="work-top">
+                <div class="info">
+                    <h3>个人信息</h3>
+                    <style>
+                        .guding{text-align:center;}
+                        .miao{display:inline-block;}
+                    </style>
+                    <div class="guding">
+                        <img class="miao" src="images/网站图标.png">
+                    </div>
+
+                    <ul class="likes">
+                        <li><a><i > </i>名字：   {{t_name}}</a></li>
+                        <li><span><i class="like"> </i>昵称：   {{nickname}}</span></li>
+                        <li><a><i class="comment"> </i>邮箱：   {{mailbox}}</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="work-in">
+                <div class="feature">
+                    <h3>自选股信息</h3>
+                    <ul ng-repeat="x in stockList" id="choiceList" class="feature-grid">
+                        <li><i id="2" ng-click="del(x.code, x.name)"></i><a ng-click="goto(x.code)">{{x.name}}</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div class="clear"> </div>
+        </div>
+    </div>
+    <div class="clear"> </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    function del(id){
+        var x;
+        var index;
+        var number='';
+        var name=parseInt(id);
+        x=document.getElementById("choiceList");
+        var t=x.getElementsByTagName("li").length;
+        for (var i=t-1;i>=0;i--)
+        {
+            for(var j=8;j<x.getElementsByTagName("li")[i].innerHTML.length;j++){
+                if(x.getElementsByTagName("li")[i].innerHTML[j]==='\"'){
+                    index=j;
+                    break;
+                }
+            }
+            number='';
+            for(j=7;j<index;j++){
+                number=number+x.getElementsByTagName("li")[i].innerHTML[j];
+                number=parseInt(number);
+            }
+            if (number===name)
+            {
+                x.removeChild(x.getElementsByTagName("li")[i]);
+                break;
+            }
+        }
+    }
+    var app = angular.module('myApp', []);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("http://localhost:8080/profile/check")
+            .then(function (value) {
+                if (value.data === 400)
+                    window.location.href = "login.html";
+                $scope.t_name = value.data.name;
+                $scope.nickname = value.data.nickname;
+                $scope.mailbox = value.data.email;
+            })
+
+        $http.get("http://localhost:8080/profile/stock/check")
+            .then(function (response) {
+                $scope.stockList= response.data
+            });
+        $scope.del = function (code, name) {
+            $http.delete("http://localhost:8080/profile/stock/delete?code=" + code)
+                .then(function (value) {
+                    alert("已成功删除自选股：" + name);
+                    $http.get("http://localhost:8080/profile/stock/check")
+                        .then(function (value2) {
+                            window.location.href = "work.html";
+                        })
+                })
+        }
+        $scope.goto = function (code) {
+            window.location.href = "detail.html?code=" + code;
+        }
+        $scope.check_out = function () {
+            window.location.href="/login.html";
+            $http.get("http://localhost:8080/user/logout");
+
+        };
+    });
+</script>
